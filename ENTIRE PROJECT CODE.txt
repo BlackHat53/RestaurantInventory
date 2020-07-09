@@ -1,0 +1,411 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+class rawM
+{
+	public:
+		char m[30];
+		char un[10];
+		int sno;
+		int price;
+		float quant;
+		void addRawM(int i);
+		void displayRM();
+		void modifyRM(float m);
+		void addQuant(float s);
+		
+};
+class items
+{
+	public:
+		int sNo;
+		char c[30];
+		float iPrice;
+		int a[15];
+		void displayItems();
+		void addItems(int sno);
+		void editIngred(int s,int q);
+		void manageItems();
+		items();
+		
+};
+items::items()
+{
+	int u=1;
+for(u=1;u<=14;u++)
+{
+		
+a[u]=0;
+}
+}
+class price
+{
+	public:
+	int x[10];
+	void getBill(int s,int p);
+	void payBill();
+	void takeBill();
+	price();
+};
+void price::getBill(int s,int p)
+{
+	x[s]=p;
+}
+price::price()
+{
+	int o=0;
+	for(;o<=9;o++)
+	{
+		x[o]=0;
+	}
+}
+void rawM::modifyRM(float m)
+{
+	quant=m;
+
+}
+void rawM::addQuant(float s)
+{
+	quant=quant+s;
+}
+void rawM::displayRM()
+{
+	cout<<sno<<"     "<<m<<"                      "<<quant<<" "<<un<<"                "<<price;
+}
+void items::addItems(int sno)
+{
+ cout<<"enter the name of the item\n";
+ cin>>c;
+ cout<<"enter the price of the item (in Rupees)\n";
+  cin>>iPrice;
+  sNo=sno;
+ }
+ void items::editIngred(int s,int q)
+ {
+ a[s]=q;
+ }
+ void items::displayItems()
+ {
+ 	cout<<"s.no      "<<sNo<<"      \n"<<"NAME"<<c<<"\n price= "<<iPrice<<"  rupees"<<endl;
+ }
+ void rawM::addRawM(int i)
+ {
+ 	cout<<"enter the name of your raw materials \n";
+ 	cin>>m;
+ 	sno=i;
+ 	cout<<"enter the price of the raw materials \n";
+ 	cin>>price;
+ 	cout<<"how much do we have? \n";
+ 	cin>>quant;
+ 	cout<<"in what units have you entered the value in?";
+ 	cin>>un;
+ }
+ int main()
+ {
+ 	int v=1,ch,ps,cha,i=0,r=0,l,chb,bb,c,y,p,mp,f,b,s,chc,pass=1234,h,l1;
+ 	rawM m[20];
+ 	rawM m1[20];
+ 	items k[10];
+ 	items k1[10];
+ 	price u[10];
+ 	price u1[10];
+ 	float quan,rev,n,arwm;
+ 	cout<<"who are you? \n";
+ 	label:cout<<"1.manager\n 2.customer \n 3.exit\n";
+ cin>>ch;
+ switch(ch)
+ {
+ 	case 1:
+ 		{
+		 cout<<"enter password";
+ 		 cin>>ps;
+ 		 if(ps==pass)
+		 {
+		 while(1)
+		 {
+		 cout<<"good morning sir..\n";
+	     cout<<"what do you wanna do? \n";
+	     cout<<"1.add new grocery\n";
+	     cout<<"2.add new dishes\n";
+	     cout<<"3.add new groceries\n";
+	     cout<<"4.update new groceries\n";
+	     cout<<"5.check revenue \n";
+	     cout<<"6.change password \n";
+	     cout<<"7.check inventory\n";
+	     cout<<"8.display menu\n";
+	     cout<<"9.save items data\n";
+	     cout<<"10.save inventory data \n";
+	     cout<<"11.load previously entered item data \n";
+	     cout<<"12.load previously entered grocery data\n";
+	     cout<<"13.exit";
+		 cin>>cha;
+		 switch(cha)
+		 {
+		 	case 1:
+		 		{
+				 m[++i].addRawM(i);
+		 		 cout<<"\n groceries added.\n";
+		 		 break;
+				 }
+			case 2:
+			    {
+			     k[++r].addItems(r);
+			    while(1)
+			    {
+			    	cout<<"please select an option \n";
+			    	cout<<"1.enter which groceries is required to make it \n";
+			    	cout<<"2.thats it  \n";
+			    	cin>>chc;
+			    	switch(chc)
+			    	{
+			    	case 1:
+					{
+						cout<<"s.no     groceries name     quantity           price \n";
+			    	for(int f=1;f<=i;f++)
+			          {
+				      m[f].displayRM();
+			          cout<<endl;
+			          }
+			    	cout<<"Enter which groceries is required to make the dish";
+			    	cin>>b;
+			    	if(b>i)
+			    	{
+			    		cout<<"no raw materail with that serial number";
+					}
+			    	cout<<"enter how much in cgs system";
+					cin>>s;
+			    	k[r].editIngred(b,s);
+			    	break;
+					}
+					case 2:
+						{
+							goto label;
+							break;
+						}
+				   }
+				 }
+			case 3:
+			{
+					cout<<"s.no     groceries name     quantity     price \n";
+			    	for(int f=1;f<=i;f++)
+			          {
+				      m[f].displayRM();
+			          cout<<endl;
+			          }
+			          cout<<"enter which grocery you brought\n ";
+			          cin>>l1;
+			          cout<<"enter how much grocery you brought in("<<m[l1].un<<")";
+			          m[l1].addQuant(arwm);
+			          break;
+				}
+			case 4:
+			{
+			    cout<<"enter which element you want to modify\n";
+				cin>>chb;
+				for(f=1;f<=i;f++)
+				{
+					m[f].displayRM();
+					cout<<endl;
+				}
+				cout<<"enter the new value you want in your inventory \n";
+				cin>>quan;
+				m[chb].modifyRM(quan);
+				break;
+				
+		    }
+			case 5:
+			{
+			   cout<<"total revenue generated is"<<"      ";
+				for(l=1;l<=v;l++)
+				{
+					for(f=1;f<=10;f++)
+				{
+					rev=rev+((k[f].iPrice)*(u[l].x[f]));
+				}
+				}	
+				cout<<rev;
+				break;
+				
+			 }	 	
+			 case 6:
+			 	{
+				 cout<<"enter new password";
+				cin>>pass;
+			    break;
+			 	
+				 }
+			case 7:
+			 	{	cout<<"s.no     groceries name      quantity              price \n";
+			    	for(int f=1;f<=i;f++)
+			          {
+				      m[f].displayRM();
+			          cout<<endl;
+			      }
+			      break;
+				
+				 }
+			case 8:
+				{
+					 for(f=1;f<=r;f++)
+				{
+					k[f].displayItems();
+					cout<<endl;
+				}
+				break;
+				
+				
+				}
+			case 9:
+				{	ofstream fstream_items;
+					fstream_items.open("ITEMS.txt", ios::out);
+					cout<<"saving item data to text files \n";
+					fstream_items.write( (char *) & k, sizeof(k));
+					fstream_items.close();
+					break;
+				
+				}
+			case 10:
+				{	ofstream fstream_grocery;
+					fstream_grocery.open("GROCERY.txt", ios::out);
+					cout<<"saving grocery data to text files \n";
+					fstream_grocery.write((char *) & m,sizeof(m));
+					fstream_grocery.close();
+					break;
+				
+				}
+				case 11:
+				{
+						ifstream ifstream_items;
+					ifstream_items.open("ITEMS.txt", ios::in);
+					ifstream_items.read( (char *) & k1, sizeof(k1));
+				for(f=1;f==k1[f].sNo;f++)
+				{
+					for(h=0;h<14;h++)
+					{
+						k[f].a[h]=k1[f].a[h];
+							k[f].c[h]=k1[f].c[h];
+					}
+					k[f].iPrice=k1[f].iPrice;
+					k[f].sNo=k1[f].sNo;
+				    }
+				    cout<<endl;
+				    r=--f;
+				break;	
+				
+					}
+				case 12:
+				{	ifstream ifstream_grocery;
+					ifstream_grocery.open("GROCERY.txt", ios::in);
+					ifstream_grocery.read( (char *) & m1, sizeof(m1));
+				for(f=1;f==m1[f].sno;f++)
+				{
+					for(h=0;h<14;h++)
+					{ 
+					        m[f].un[h]=m1[f].un[h];
+							m[f].m[h]=m1[f].m[h];
+					}
+					m[f].price=m1[f].price;
+					m[f].quant=m1[f].quant;
+					m[f].sno=m1[f].sno;
+				    }
+				    cout<<endl;
+				    i=--f;
+				break;	
+				}
+				case 13:
+				{
+                 	goto label;
+			 		break;
+				}
+			default:
+				{
+					cout<<"invalid input";
+					 } 	
+				 }	 
+		 }
+		 
+		 }
+		    }
+			else
+		    {
+		    	cout<<"\n wrong password \n";
+		    	goto label;
+			}
+			break;
+		}
+	case 2:
+	{
+		while(1)
+		{
+		cout<<"enter what you wnat to do \n";
+		cout<<"1.order food \n";
+		cout<<"2.exit \n";
+		cin>>f;
+				switch(f)
+				{
+				case 1:
+				{
+				cout<<"enter what you want to order \n";
+				for(f=1;f<=r;f++)
+				{
+					k[f].displayItems();
+					cout<<endl;
+				}
+				cin>>y;
+				cout<<"how many?";
+				cin>>p;
+			    u[v].getBill(y,p);
+			    for(mp=1;mp<=14;mp++)
+			    {
+			    	if(k[y].a[mp]!=0)
+			    	{
+			    		n=(k[y].a[mp])*p;
+			    		m[mp].quant=m[mp].quant-n;
+			    	
+					}
+					
+				}
+				goto label;
+				break;
+				}
+				case 2:
+				{
+					/*cout<<"s.no     item name     price     quantity     total \n";
+					for(mp=1;mp<=10;mp++)
+					{
+							if(u[r].x[mp]!=0)
+							{
+								k[mp].displayItems();
+								cout<<u[r].x[mp];
+								bb=(u[r].x[mp])*(k[mp].iPrice);
+								cout<<"     "<<bb<<endl;
+							}
+						}
+						r++;
+						break;*/
+					_exit(0);
+					break;
+						
+					}	
+				default:
+					{
+					cout<<"\n wrong input";
+
+					}
+			}
+		}
+	
+		break;
+	}
+			case 3:
+			{
+				
+				
+				_exit(0);
+				break;
+			}
+	}
+
+			return 0;
+		
+		}
